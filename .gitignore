@@ -1,0 +1,11 @@
+# Ignore all files 
+*
+
+# Except the following
+!*.cpp
+!/Searching
+!/Sorting
+!/Tree
+!/Graph
+!/Arrays
+!/Others
