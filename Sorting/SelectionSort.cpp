@@ -30,7 +30,7 @@ void selectionSort(int arr[], int n)
         // with the first element
         if(min!=i)
             swap(&arr[min], &arr[i]);
-    }
+    } 
 }
  
 //Function to print an array
