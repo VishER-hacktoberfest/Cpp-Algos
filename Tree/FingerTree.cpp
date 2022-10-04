@@ -127,6 +127,6 @@ int main()
     }
 
     preOrder(T.rtnRoot());
-    return 0;
+    return 1;
 }
 
