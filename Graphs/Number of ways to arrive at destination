@@ -1,0 +1,65 @@
+#define ll long long
+#define pll pair<ll, ll>
+
+
+class Solution {
+public:
+    
+    int countPaths(int n, vector<vector<int>>& roads) {
+        
+        // here I apply DIJKSTRA to find the shortest path from src to des
+        //create adjacency list
+        
+        vector<pll> adj[n];
+        
+        for(auto x:roads)
+        {
+            // x  is  [0,6,7]
+            adj[x[0]].push_back({x[1],x[2]});
+            adj[x[1]].push_back({x[0],x[2]});
+        }
+        
+        // pq ( min heap ) of  { dis , node }
+        priority_queue<pll,vector<pll>,greater<pll>> pq;
+        pq.push({0,0});
+        
+        vector<ll> distance(n,LONG_MAX) , ways(n,0);
+        ways[0]=1;
+        distance[0]=0;
+        
+        int mod = (1e9+7);
+        
+        while(!pq.empty())
+        {
+            auto p = pq.top();
+            ll dis = p.first;
+            ll node = p.second;
+            pq.pop();
+            
+            for(auto x: adj[node])
+            {
+                ll adjNode = x.first;
+                ll edgeW = x.second;
+                
+                // this is the first time I am coming to this node with better time
+                if(dis+edgeW < distance[adjNode])
+                {
+                    ways[adjNode] = ways[node];
+                    distance[adjNode] = dis+edgeW;
+                    pq.push({distance[adjNode],adjNode});
+                }
+                // this is not the first time someone has already viisted this node with same time 
+                    // but i am also another way to reach that same node , so lets add up to that node's number of ways
+                else  if(dis+edgeW == distance[adjNode])
+                    {
+                        ways[adjNode] = (ways[adjNode] + ways[node])%mod;
+                        // no need to push in pq , as dis+edgeW is not less than distance[adjNode]
+                    }
+                
+            }
+        }
+        
+       return ways[n-1] ;
+        
+    }
+};
