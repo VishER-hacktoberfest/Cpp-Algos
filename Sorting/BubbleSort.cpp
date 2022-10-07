@@ -2,7 +2,7 @@
 using namespace std;
 int main()
 {
-    int n, i, arr[50], j, temp;
+    int n, i, arr[50], j;
     //Taking input from user 
     cout<<"Enter the Size (max. 50): ";
     cin>>n;
@@ -21,9 +21,13 @@ int main()
             if(arr[j]>arr[j+1])
             {
                 //swapping
+                /*
                 temp = arr[j];
                 arr[j] = arr[j+1];
-                arr[j+1] = temp;
+                arr[j+1] = temp;*/
+                //we also use built in function swap()....to do easily swapping
+                //here we dont need temp
+                swap(arr[j],arr[j+1]);
             }
 
         }
