@@ -10,6 +10,7 @@ int getMaxSubarray(int a[],int n){
 			sum=0;
 		}
 	}
+	//return the ans
 	return ans;
 }
 int main()
